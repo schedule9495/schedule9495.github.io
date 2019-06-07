@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 23. Merge k Sorted Lists - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 17.5px;">BFS</a> <a href="/tags/DFS/" style="font-size: 23.13px;">DFS</a> <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/二叉树/" style="font-size: 21.25px;">二叉树</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/双指针/" style="font-size: 11.88px;">双指针</a> <a href="/tags/回文题/" style="font-size: 10px;">回文题</a> <a href="/tags/回溯/" style="font-size: 19.38px;">回溯</a> <a href="/tags/堆/" style="font-size: 10px;">堆</a> <a href="/tags/子集题/" style="font-size: 11.88px;">子集题</a> <a href="/tags/排列题/" style="font-size: 15.63px;">排列题</a> <a href="/tags/组合题/" style="font-size: 13.75px;">组合题</a> <a href="/tags/链表/" style="font-size: 11.88px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/06/07/LeetCode-23-Merge-k-Sorted-Lists/" title="LeetCode 23. Merge k Sorted Lists" class="title-main">LeetCode 23. Merge k Sorted Lists</a>
+        <small class="article-time">2019-06-07</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">[</span><br><span class="line">  1-&gt;4-&gt;5,</span><br><span class="line">  1-&gt;3-&gt;4,</span><br><span class="line">  2-&gt;6</span><br><span class="line">]</span><br><span class="line">输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="分而治之-自底向上-O-Nlogk-。"><a href="#分而治之-自底向上-O-Nlogk-。" class="headerlink" title="(分而治之 自底向上)   O(Nlogk)。"></a>(分而治之 自底向上)   O(Nlogk)。</h5><p>将 k 个链表配对并将同一对中的链表合并。<br>每一轮合并以后，链表数少一半，重复这一过程，<br>重复这一过程 log2K 次。<br>直到我们得到了最终的有序链表。</p>
+<p><a href="https://pic.leetcode-cn.com/6f70a6649d2192cf32af68500915d84b476aa34ec899f98766c038fc9cc54662-image.png" target="_blank" rel="noopener">!image</a></p>
+<p>时间复杂度分析： O(n) 的时间内合并两个有序链表，重复这一过程 log2K 次。所以最终O(Nlogk)。O(1) 的空间实现两个有序链表的合并。</p>
+<h4 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">        amount = len(lists)</span><br><span class="line">        interval = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> interval &lt; amount:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, amount - interval, interval * <span class="number">2</span>):</span><br><span class="line">                lists[i] = self.merge2Lists(lists[i], lists[i + interval])</span><br><span class="line">            interval *= <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> lists[<span class="number">0</span>] <span class="keyword">if</span> amount &gt; <span class="number">0</span> <span class="keyword">else</span> lists</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge2Lists</span><span class="params">(self, l1, l2)</span>:</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        cur = dummy</span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">and</span> l2:</span><br><span class="line">            <span class="keyword">if</span> l1.val &lt;= l2.val:</span><br><span class="line">                cur.next = l1</span><br><span class="line">                l1 = l1.next</span><br><span class="line">                cur = cur.next               </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cur.next = l2</span><br><span class="line">                l2 = l2.next</span><br><span class="line">                cur = cur.next</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> l1:</span><br><span class="line">            cur.next = l2</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cur.next = l1</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><h5 id="分而治之-自顶向下-O-Nlogk"><a href="#分而治之-自顶向下-O-Nlogk" class="headerlink" title="(分而治之 自顶向下)   O(Nlogk)"></a>(分而治之 自顶向下)   O(Nlogk)</h5><p>递归，自顶向下</p>
+<p>时间复杂度分析：同上</p>
+<h4 id="python-代码-1"><a href="#python-代码-1" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_merge2Lists</span><span class="params">(l1, l2)</span>:</span></span><br><span class="line">            dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">            cur = dummy</span><br><span class="line">            <span class="keyword">while</span> l1 <span class="keyword">and</span> l2:</span><br><span class="line">                <span class="keyword">if</span> l1.val &lt;= l2.val:</span><br><span class="line">                    cur.next = l1</span><br><span class="line">                    l1 = l1.next</span><br><span class="line">                    cur = cur.next               </span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    cur.next = l2</span><br><span class="line">                    l2 = l2.next</span><br><span class="line">                    cur = cur.next</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> l1:</span><br><span class="line">                cur.next = l2</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cur.next = l1</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> dummy.next</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_merge</span><span class="params">(lists, left, right)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                <span class="keyword">return</span> lists[left]</span><br><span class="line">            mid = left + (right - left) // <span class="number">2</span></span><br><span class="line">            l1 = _merge(lists, left, mid)</span><br><span class="line">            l2 = _merge(lists, mid + <span class="number">1</span>, right)</span><br><span class="line">            <span class="keyword">return</span> _merge2Lists(l1, l2)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> lists: </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        n = len(lists)</span><br><span class="line">        <span class="keyword">return</span> _merge(lists, <span class="number">0</span>, n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法3"><a href="#算法3" class="headerlink" title="算法3"></a>算法3</h3><h5 id="堆-优先队列-O-Nlogk"><a href="#堆-优先队列-O-Nlogk" class="headerlink" title="(堆 优先队列)   O(Nlogk)"></a>(堆 优先队列)   O(Nlogk)</h5><p>先用每个链表的第一个节点的val和其下标初始化一个小顶堆，将堆顶插入结果链表末尾，同时将其原来所在链表的下一个节点插入堆中。</p>
+<p>时间复杂度分析：弹出操作时，比较操作的代价会被优化到 (logk) 。同时，找到最小值节点的时间开销仅仅为 O(1)。最后的链表中总共有 N 个节点<br>堆需要 O(k) 的空间。</p>
+<h4 id="python-代码-2"><a href="#python-代码-2" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">        <span class="keyword">import</span> heapq</span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        cur = dummy</span><br><span class="line">        min_heap = []</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 先用每个链表的第一个节点的val和其下标初始化一个小顶堆</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lists)):</span><br><span class="line">            <span class="keyword">if</span> lists[i] :</span><br><span class="line">                heapq.heappush(min_heap, (lists[i].val, i))</span><br><span class="line">                lists[i] = lists[i].next</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 将堆顶插入结果链表末尾</span></span><br><span class="line">        <span class="comment"># 同时将其原来所在链表的下一个节点插入堆中</span></span><br><span class="line">        <span class="keyword">while</span> min_heap:</span><br><span class="line">            val, index = heapq.heappop(min_heap)</span><br><span class="line">            cur.next = ListNode(val)</span><br><span class="line">            cur = cur.next</span><br><span class="line">            <span class="keyword">if</span> lists[index]:</span><br><span class="line">                heapq.heappush(min_heap, (lists[index].val, index))</span><br><span class="line">                lists[index] = lists[index].next</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="javascript:void(0);">暂无</a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/06/07/LeetCode-21-Merge-Two-Sorted-Lists/">LeetCode 21. Merge Two Sorted Lists </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
