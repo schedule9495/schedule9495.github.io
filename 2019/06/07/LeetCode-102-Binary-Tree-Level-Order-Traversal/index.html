@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 102. Binary Tree Level Order Traversal - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 17.5px;">BFS</a> <a href="/tags/DFS/" style="font-size: 23.13px;">DFS</a> <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/二叉树/" style="font-size: 21.25px;">二叉树</a> <a href="/tags/回文题/" style="font-size: 10px;">回文题</a> <a href="/tags/回溯/" style="font-size: 19.38px;">回溯</a> <a href="/tags/子集题/" style="font-size: 11.88px;">子集题</a> <a href="/tags/排列题/" style="font-size: 15.63px;">排列题</a> <a href="/tags/组合题/" style="font-size: 13.75px;">组合题</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/06/07/LeetCode-102-Binary-Tree-Level-Order-Traversal/" title="LeetCode 102. Binary Tree Level Order Traversal" class="title-main">LeetCode 102. Binary Tree Level Order Traversal</a>
+        <small class="article-time">2019-06-07</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">给定二叉树: [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">   </span><br><span class="line">返回其层次遍历结果：</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [9,20],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="BFS-O-n"><a href="#BFS-O-n" class="headerlink" title="(BFS)  O(n)"></a>(BFS)  O(n)</h5><p>时间复杂度分析：树中每个节点仅会进队出队一次，所以时间复杂度是 O(n)。</p>
+<h4 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        res = []</span><br><span class="line">        stack = [root]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            level = []</span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> stack:</span><br><span class="line">                level.append(node.val)</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    temp.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    temp.append(node.right)</span><br><span class="line">            res.append(level)</span><br><span class="line">            stack = temp</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><h5 id="DFS-递归-O-n"><a href="#DFS-递归-O-n" class="headerlink" title="(DFS 递归)  O(n)"></a>(DFS 递归)  O(n)</h5><p>层次也就是深度，如果层号 = 层数，说明已经抵达新的一层，重新开辟一层存储节点数据。如果层号 &lt; 层数，说明这个节点所在层已被创建过，就存储在层号那一层即可。</p>
+<p>时间复杂度分析：同上</p>
+<h4 id="python-代码-1"><a href="#python-代码-1" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_dfs</span><span class="params">(node, level)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> level == len(res):</span><br><span class="line">                res.append([])</span><br><span class="line">            res[level].append(node.val)</span><br><span class="line"></span><br><span class="line">            _dfs(node.left, level + <span class="number">1</span>)</span><br><span class="line">            _dfs(node.right, level + <span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        res = []</span><br><span class="line">        _dfs(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法3"><a href="#算法3" class="headerlink" title="算法3"></a>算法3</h3><h5 id="DFS-迭代-O-n"><a href="#DFS-迭代-O-n" class="headerlink" title="(DFS 迭代)  O(n)"></a>(DFS 迭代)  O(n)</h5><p>栈模拟递归</p>
+<p>时间复杂度分析：同上</p>
+<h4 id="python-代码-2"><a href="#python-代码-2" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res = []</span><br><span class="line">        stack = [(root, <span class="number">0</span>)]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            cur, level = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> len(res) == level:</span><br><span class="line">                res.append([])</span><br><span class="line">            res[level].append(cur.val)</span><br><span class="line">            <span class="keyword">if</span> cur.right:</span><br><span class="line">                stack.append((cur.right, level + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> cur.left:</span><br><span class="line">                stack.append((cur.left, level + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="/2019/06/07/LeetCode-429-N-ary-Tree-Level-Order-Traversal/"> LeetCode 429. N-ary Tree Level Order Traversal </a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/06/06/Leetcode-590-N-ary-Tree-Postorder-Traversal/">Leetcode 590. N-ary Tree Postorder Traversal </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
