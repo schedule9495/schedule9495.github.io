@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 151. Reverse Words in a String - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 18.33px;">BFS</a> <a href="/tags/DFS/" style="font-size: 23.33px;">DFS</a> <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/二叉树/" style="font-size: 21.67px;">二叉树</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/双指针/" style="font-size: 20px;">双指针</a> <a href="/tags/反转题/" style="font-size: 16.67px;">反转题</a> <a href="/tags/回文题/" style="font-size: 10px;">回文题</a> <a href="/tags/回溯/" style="font-size: 20px;">回溯</a> <a href="/tags/堆/" style="font-size: 10px;">堆</a> <a href="/tags/子集题/" style="font-size: 11.67px;">子集题</a> <a href="/tags/排列题/" style="font-size: 15px;">排列题</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/组合题/" style="font-size: 13.33px;">组合题</a> <a href="/tags/链表/" style="font-size: 11.67px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/06/08/LeetCode-151-Reverse-Words-in-a-String/" title="LeetCode 151. Reverse Words in a String" class="title-main">LeetCode 151. Reverse Words in a String</a>
+        <small class="article-time">2019-06-08</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个字符串，逐个翻转字符串中的每个单词。</p>
+<p>说明：</p>
+<p>无空格字符构成一个单词。<br>输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。<br>如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;a good   example&quot;</span><br><span class="line">输出: &quot;example good a&quot;</span><br><span class="line">解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</span><br><span class="line"></span><br><span class="line">输入: &quot;  hello world!  &quot;</span><br><span class="line">输出: &quot;world! hello&quot;</span><br><span class="line">解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h5 id="双指针-O-n"><a href="#双指针-O-n" class="headerlink" title="(双指针)  O(n)"></a>(双指针)  O(n)</h5><p>先小翻，翻单词<br>后大翻，翻句子<br>反过来也行</p>
+<p>时间复杂度分析：整个字符串总共扫描两遍，所以时间复杂度是 O(n)。且每次翻转一个字符串时，可以用两个指针分别从两端往中间扫描，每次交换两个指针对应的字符，所以额外空间的复杂度是 O(1)。</p>
+<h4 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseWords</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_reverse</span><span class="params">(l, r)</span>:</span></span><br><span class="line">            <span class="keyword">while</span> l &lt; r:</span><br><span class="line">                s_list[l], s_list[r] = s_list[r], s_list[l]</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        n = len(s)</span><br><span class="line">        s_list = list(s)</span><br><span class="line">        cur = <span class="number">0</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> i &lt;= n - <span class="number">1</span>:</span><br><span class="line">            j = i</span><br><span class="line">            <span class="keyword">while</span> j &lt;= n - <span class="number">1</span> <span class="keyword">and</span> s_list[j] == <span class="string">' '</span>:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> j == n:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            i = j</span><br><span class="line">            <span class="keyword">while</span> j &lt;= n - <span class="number">1</span> <span class="keyword">and</span> s_list[j] != <span class="string">' '</span>:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            _reverse(i, j - <span class="number">1</span>)</span><br><span class="line">            <span class="comment"># 加空格</span></span><br><span class="line">            <span class="keyword">if</span> cur:</span><br><span class="line">                s_list[cur] = <span class="string">' '</span></span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 将答案复制到数组前部，借此去掉多余空格</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; j:</span><br><span class="line">                s_list[cur] = s_list[i]</span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 截取是有效部分，多余的丢去  </span></span><br><span class="line">        s_list = s_list[:cur]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#最后一步大翻</span></span><br><span class="line">        _reverse(<span class="number">0</span>, len(s_list) - <span class="number">1</span>)</span><br><span class="line">                 </span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(s_list)</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="javascript:void(0);">暂无</a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/06/07/LeetCode-186-Reverse-Words-in-a-String-II/">LeetCode 186. Reverse Words in a String II </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
