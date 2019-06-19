@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 68. Text Justification - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/DFS/" style="font-size: 22.27px;">DFS</a> <a href="/tags/DP/" style="font-size: 11.36px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/二叉搜索树/" style="font-size: 10px;">二叉搜索树</a> <a href="/tags/二叉树/" style="font-size: 20.91px;">二叉树</a> <a href="/tags/位运算/" style="font-size: 15.45px;">位运算</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/双指针/" style="font-size: 19.55px;">双指针</a> <a href="/tags/哈希表/" style="font-size: 16.82px;">哈希表</a> <a href="/tags/回溯/" style="font-size: 18.18px;">回溯</a> <a href="/tags/堆/" style="font-size: 12.73px;">堆</a> <a href="/tags/多叉树/" style="font-size: 11.36px;">多叉树</a> <a href="/tags/平衡二叉树/" style="font-size: 11.36px;">平衡二叉树</a> <a href="/tags/数论/" style="font-size: 11.36px;">数论</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/栈/" style="font-size: 11.36px;">栈</a> <a href="/tags/模拟/" style="font-size: 23.64px;">模拟</a> <a href="/tags/矩阵/" style="font-size: 14.09px;">矩阵</a> <a href="/tags/链表/" style="font-size: 18.18px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/06/19/LeetCode-68-Text-Justification/" title="LeetCode 68. Text Justification" class="title-main">LeetCode 68. Text Justification</a>
+        <small class="article-time">2019-06-19</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个单词数组和一个长度 maxWidth，重新排版单词，使其成为每行恰好有 maxWidth 个字符，且左右两端对齐的文本。</p>
+<p>你应该使用“贪心算法”来放置给定的单词；也就是说，尽可能多地往每行中放置单词。必要时可用空格 ‘ ‘ 填充，使得每行恰好有 maxWidth 个字符。</p>
+<p>要求尽可能均匀分配单词间的空格数量。如果某一行单词间的空格不能均匀分配，则左侧放置的空格数要多于右侧的空格数。</p>
+<p>文本的最后一行应为左对齐，且单词之间不插入额外的空格。</p>
+<p>说明:</p>
+<p>单词是指由非空格字符组成的字符序列。<br>每个单词的长度大于 0，小于等于 maxWidth。<br>输入单词数组 words 至少包含一个单词。</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>模拟</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">words = [&quot;This&quot;, &quot;is&quot;, &quot;an&quot;, &quot;example&quot;, &quot;of&quot;, &quot;text&quot;, &quot;justification.&quot;]</span><br><span class="line">maxWidth = 16</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">   &quot;This    is    an&quot;,</span><br><span class="line">   &quot;example  of text&quot;,</span><br><span class="line">   &quot;justification.  &quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="暴力枚举-O-n-2"><a href="#暴力枚举-O-n-2" class="headerlink" title="(暴力枚举)  O(n^2)"></a>(暴力枚举)  O(n^2)</h5><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>只有一行和是最后一行，直接在末尾插空格补到maxWidth长度。<br>其他情况，先平均分空格，若有多余则在前部分再平均分。</p>
+<h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fullJustify</span><span class="params">(self, words: List[str], maxWidth: int)</span> -&gt; List[str]:</span></span><br><span class="line">        n = len(words)</span><br><span class="line">        L = maxWidth</span><br><span class="line">        i = <span class="number">0</span>   </span><br><span class="line">        res = [] </span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_getKwords</span><span class="params">(i)</span>:</span></span><br><span class="line">            <span class="string">'''确定一行最多几个单词'''</span>        </span><br><span class="line">            cur_len = len(words[i])</span><br><span class="line">            k = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> i + k &lt; n:</span><br><span class="line">                <span class="comment"># 1是空格的长度</span></span><br><span class="line">                next_len = len(words[i + k]) + <span class="number">1</span>      </span><br><span class="line">                <span class="keyword">if</span> cur_len + next_len &lt;= L:</span><br><span class="line">                    k += <span class="number">1</span></span><br><span class="line">                    cur_len += next_len</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span>   </span><br><span class="line">            <span class="keyword">return</span> k</span><br><span class="line">           </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_insertSpace</span><span class="params">(i, k)</span>:</span></span><br><span class="line">            <span class="string">'''形成一行'''</span></span><br><span class="line">            <span class="comment"># 所有单词长度之和</span></span><br><span class="line">            l = <span class="string">' '</span>.join(words[i : i + k])   </span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 该行只有一个单词 或者 这是最后一行，在右边插空格即可</span></span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">1</span> <span class="keyword">or</span> i + k == n:        </span><br><span class="line">                spaces = L - len(l)        </span><br><span class="line">                line = l + <span class="string">' '</span> * spaces </span><br><span class="line">                </span><br><span class="line">            <span class="keyword">else</span>:    </span><br><span class="line">                <span class="comment"># 共需插入多少空格, l多算了 k - 1 个空格，所以要补上</span></span><br><span class="line">                spaces = L - len(l) + (k - <span class="number">1</span>) </span><br><span class="line">                <span class="comment"># 平均每个单词之间多少空格</span></span><br><span class="line">                space = spaces // (k - <span class="number">1</span>)   </span><br><span class="line">                <span class="comment"># 多出来的空格, 需要在左边多少单词之间加</span></span><br><span class="line">                left = spaces % (k - <span class="number">1</span>)    </span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> left == <span class="number">0</span>:</span><br><span class="line">                    line = (<span class="string">' '</span> * space).join(words[i : i + k])   </span><br><span class="line">                <span class="keyword">else</span>:  </span><br><span class="line">                    <span class="comment"># 前left个之间，空格数是space + 1，这样一共多插space个空格，平均分在前left个单词之间</span></span><br><span class="line">                    line = (<span class="string">' '</span> * (space + <span class="number">1</span>) ).join(words[i : i + left])  </span><br><span class="line">                    line += <span class="string">' '</span> * (space + <span class="number">1</span>)  </span><br><span class="line">                    <span class="comment"># 后面正常space个空格</span></span><br><span class="line">                    line += (<span class="string">' '</span> * space).join(words[i + left : i + k]) </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> line</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> i &lt; n: </span><br><span class="line">            k = _getKwords(i)  </span><br><span class="line">            line = _insertSpace(i, k)</span><br><span class="line">            res.append(line) </span><br><span class="line">            i += k </span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="/2019/06/19/LeetCode-93-Restore-IP-Addresses/"> LeetCode 93. Restore IP Addresses  </a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/06/19/LeetCode-273-Integer-to-English-Words/">LeetCode 273. Integer to English Words </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
