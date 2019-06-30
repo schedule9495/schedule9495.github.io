@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 127. Word Ladder - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 21px;">BFS</a> <a href="/tags/DFS/" style="font-size: 24px;">DFS</a> <a href="/tags/DP/" style="font-size: 19px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/二分查找/" style="font-size: 13px;">二分查找</a> <a href="/tags/二叉搜索树/" style="font-size: 12px;">二叉搜索树</a> <a href="/tags/二叉树/" style="font-size: 22px;">二叉树</a> <a href="/tags/位运算/" style="font-size: 16px;">位运算</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/前缀树/" style="font-size: 10px;">前缀树</a> <a href="/tags/博弈/" style="font-size: 10px;">博弈</a> <a href="/tags/双指针/" style="font-size: 20px;">双指针</a> <a href="/tags/哈希表/" style="font-size: 16px;">哈希表</a> <a href="/tags/回溯/" style="font-size: 18px;">回溯</a> <a href="/tags/图/" style="font-size: 11px;">图</a> <a href="/tags/堆/" style="font-size: 12px;">堆</a> <a href="/tags/多叉树/" style="font-size: 11px;">多叉树</a> <a href="/tags/平衡二叉树/" style="font-size: 11px;">平衡二叉树</a> <a href="/tags/并查集/" style="font-size: 11px;">并查集</a> <a href="/tags/拓扑排序/" style="font-size: 11px;">拓扑排序</a> <a href="/tags/排序/" style="font-size: 11px;">排序</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/数论/" style="font-size: 12px;">数论</a> <a href="/tags/枚举/" style="font-size: 11px;">枚举</a> <a href="/tags/栈/" style="font-size: 14px;">栈</a> <a href="/tags/树型DP/" style="font-size: 10px;">树型DP</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/模拟/" style="font-size: 23px;">模拟</a> <a href="/tags/矩阵/" style="font-size: 13px;">矩阵</a> <a href="/tags/记忆化/" style="font-size: 10px;">记忆化</a> <a href="/tags/设计/" style="font-size: 10px;">设计</a> <a href="/tags/贪心/" style="font-size: 17px;">贪心</a> <a href="/tags/链表/" style="font-size: 17px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/06/30/LeetCode-127-Word-Ladder/" title="LeetCode 127. Word Ladder" class="title-main">LeetCode 127. Word Ladder</a>
+        <small class="article-time">2019-06-30</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：</p>
+<p>每次转换只能改变一个字母。<br>转换过程中的中间单词必须是字典中的单词。</p>
+<p>如果不存在这样的转换序列，返回 0。<br>所有单词具有相同的长度。<br>所有单词只由小写字母组成。<br>字典中不存在重复的单词。<br>你可以假设 beginWord 和 endWord 是非空的，且二者不相同。</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>单词题 BFS</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">beginWord = &quot;hit&quot;,</span><br><span class="line">endWord = &quot;cog&quot;,</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">输出: 5</span><br><span class="line"></span><br><span class="line">解释: 一个最短转换序列是 &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;,</span><br><span class="line">     返回它的长度 5。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="BFS-O-L-2-n"><a href="#BFS-O-L-2-n" class="headerlink" title="(BFS)  O(L^2 * n)"></a>(BFS)  O(L^2 * n)</h5><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>枚举当前单词的每个位置，然后用a到z依次替换，然后再判断修改后的单词是否存在，计算量是 26 ∗ L^2，当 n 比较大时会快很多。</p>
+<p>还有一种方法是，枚举其它所有单词，再判断是否只有一个字母相同，复杂度是 O(nL)。</p>
+<h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        word_set = set(wordList)</span><br><span class="line">       </span><br><span class="line">        queue = [beginWord]</span><br><span class="line"></span><br><span class="line">        depth = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            next_queue = []</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> queue:</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> word == endWord:</span><br><span class="line">                    <span class="keyword">return</span> depth</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 改一个字母，且需在字典中</span></span><br><span class="line">                <span class="keyword">for</span> index <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                    <span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">"abcdefghijklmnopqrstuvwxyz"</span>:</span><br><span class="line">                        new_word = word[ : index] + ch + word[index + <span class="number">1</span> : ]</span><br><span class="line">                        <span class="keyword">if</span> new_word <span class="keyword">in</span> word_set:</span><br><span class="line">                            <span class="comment"># 走过的就不需要再走</span></span><br><span class="line">                            word_set.remove(new_word)</span><br><span class="line">                            next_queue.append(new_word)</span><br><span class="line"></span><br><span class="line">            depth += <span class="number">1</span></span><br><span class="line">            queue = next_queue</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordList <span class="keyword">or</span> <span class="keyword">not</span> endWord <span class="keyword">or</span> <span class="keyword">not</span> beginWord <span class="keyword">or</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        L = len(beginWord)</span><br><span class="line"></span><br><span class="line">        all_combo_dict = collections.defaultdict(list)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                all_combo_dict[word[ : i] + <span class="string">"*"</span> + word[i + <span class="number">1</span> : ]].append(word)</span><br><span class="line"></span><br><span class="line">        queue = [(beginWord, <span class="number">1</span>)]</span><br><span class="line">        visited = &#123;beginWord: <span class="literal">True</span>&#125;</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            current_word, level = queue.pop(<span class="number">0</span>)      </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                intermediate_word = current_word[ : i] + <span class="string">"*"</span> + current_word[i + <span class="number">1</span> : ]</span><br><span class="line">            </span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> all_combo_dict[intermediate_word]:</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> word == endWord:</span><br><span class="line">                        <span class="keyword">return</span> level + <span class="number">1</span></span><br><span class="line">                 </span><br><span class="line">                    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        visited[word] = <span class="literal">True</span></span><br><span class="line">                        queue.append((word, level + <span class="number">1</span>))</span><br><span class="line">                        </span><br><span class="line">                all_combo_dict[intermediate_word] = []</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><h5 id="双端BFS-O"><a href="#双端BFS-O" class="headerlink" title="(双端BFS)  O()"></a>(双端BFS)  O()</h5><h5 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h5><p>从两个节点同时开始搜索，同时搜索的结束条件也有所变化。</p>
+<p>现在有两个访问数组，分别记录从对应的起点是否已经访问了该节点。</p>
+<p>如果发现一个节点被两个搜索同时访问，就结束搜索过程。因为找到了双向搜索的交点。过程如同从中间相遇而不是沿着搜索路径一直走。</p>
+<p>双向搜索的结束条件是找到一个单词被两边搜索都访问过了。</p>
+<p>最短变换序列的长度就是中间节点在两边的层次之和。因此，可以在访问数组中记录节点的层次。</p>
+<h5 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码-1"><a href="#python-代码-1" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_visitWordNode</span><span class="params">(queue, visited, others_visited)</span>:</span></span><br><span class="line">            current_word, level = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                intermediate_word = current_word[ : i] + <span class="string">"*"</span> + current_word[i + <span class="number">1</span> : ]</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> all_combo_dict[intermediate_word]:</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> word <span class="keyword">in</span> others_visited:</span><br><span class="line">                        <span class="keyword">return</span> level + others_visited[word]</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        visited[word] = level + <span class="number">1</span></span><br><span class="line">                        queue.append((word, level + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordList <span class="keyword">or</span> <span class="keyword">not</span> endWord <span class="keyword">or</span> <span class="keyword">not</span> beginWord <span class="keyword">or</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">             </span><br><span class="line">        L = len(beginWord)</span><br><span class="line">        </span><br><span class="line">        all_combo_dict = collections.defaultdict(list)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                all_combo_dict[word[ : i] + <span class="string">"*"</span> + word[i + <span class="number">1</span> : ]].append(word)</span><br><span class="line"></span><br><span class="line">        queue_begin = [(beginWord, <span class="number">1</span>)] </span><br><span class="line">        queue_end = [(endWord, <span class="number">1</span>)] </span><br><span class="line"></span><br><span class="line">        visited_begin = &#123;beginWord: <span class="number">1</span>&#125;</span><br><span class="line">        visited_end = &#123;endWord: <span class="number">1</span>&#125;</span><br><span class="line">        </span><br><span class="line">        res = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue_begin <span class="keyword">and</span> queue_end:</span><br><span class="line"></span><br><span class="line">            res = _visitWordNode(queue_begin, visited_begin, visited_end)</span><br><span class="line">            <span class="keyword">if</span> res:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">            res = _visitWordNode(queue_end, visited_end, visited_begin)</span><br><span class="line">            <span class="keyword">if</span> res:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="/2019/06/30/LeetCode-207-Course-Schedule/"> LeetCode 207. Course Schedule    </a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/06/30/LeetCode-542-01-Matrix/">LeetCode 542. 01 Matrix  </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>

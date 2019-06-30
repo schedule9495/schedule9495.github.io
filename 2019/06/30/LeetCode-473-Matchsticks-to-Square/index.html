@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 473. Matchsticks to Square  - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 21px;">BFS</a> <a href="/tags/DFS/" style="font-size: 24px;">DFS</a> <a href="/tags/DP/" style="font-size: 19px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/二分查找/" style="font-size: 13px;">二分查找</a> <a href="/tags/二叉搜索树/" style="font-size: 12px;">二叉搜索树</a> <a href="/tags/二叉树/" style="font-size: 22px;">二叉树</a> <a href="/tags/位运算/" style="font-size: 16px;">位运算</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/前缀树/" style="font-size: 10px;">前缀树</a> <a href="/tags/博弈/" style="font-size: 10px;">博弈</a> <a href="/tags/双指针/" style="font-size: 20px;">双指针</a> <a href="/tags/哈希表/" style="font-size: 16px;">哈希表</a> <a href="/tags/回溯/" style="font-size: 18px;">回溯</a> <a href="/tags/图/" style="font-size: 11px;">图</a> <a href="/tags/堆/" style="font-size: 12px;">堆</a> <a href="/tags/多叉树/" style="font-size: 11px;">多叉树</a> <a href="/tags/平衡二叉树/" style="font-size: 11px;">平衡二叉树</a> <a href="/tags/并查集/" style="font-size: 11px;">并查集</a> <a href="/tags/拓扑排序/" style="font-size: 11px;">拓扑排序</a> <a href="/tags/排序/" style="font-size: 11px;">排序</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/数论/" style="font-size: 12px;">数论</a> <a href="/tags/枚举/" style="font-size: 11px;">枚举</a> <a href="/tags/栈/" style="font-size: 14px;">栈</a> <a href="/tags/树型DP/" style="font-size: 10px;">树型DP</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/模拟/" style="font-size: 23px;">模拟</a> <a href="/tags/矩阵/" style="font-size: 13px;">矩阵</a> <a href="/tags/记忆化/" style="font-size: 10px;">记忆化</a> <a href="/tags/设计/" style="font-size: 10px;">设计</a> <a href="/tags/贪心/" style="font-size: 17px;">贪心</a> <a href="/tags/链表/" style="font-size: 17px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/06/30/LeetCode-473-Matchsticks-to-Square/" title="LeetCode 473. Matchsticks to Square " class="title-main">LeetCode 473. Matchsticks to Square </a>
+        <small class="article-time">2019-06-30</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>还记得童话《卖火柴的小女孩》吗？现在，你知道小女孩有多少根火柴，请找出一种能使用所有火柴拼成一个正方形的方法。不能折断火柴，可以把火柴连接起来，并且每根火柴都要用到。</p>
+<p>输入为小女孩拥有火柴的数目，每根火柴用其长度表示。输出即为是否能用所有的火柴拼成正方形</p>
+<p>给定的火柴长度和在 0 到 10^9之间。<br>火柴数组的长度不超过15。</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>回溯 DFS DP</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,1,2,2,2]</span><br><span class="line">输出: true</span><br><span class="line"></span><br><span class="line">解释: 能拼成一个边长为2的正方形，每边两根火柴。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="DFS-O"><a href="#DFS-O" class="headerlink" title="(DFS)  O()"></a>(DFS)  O()</h5><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makesquare</span><span class="params">(self, nums: List[int])</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_dfs</span><span class="params">(index)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> index == len(nums): </span><br><span class="line">                <span class="keyword">return</span> target[<span class="number">0</span>] == target[<span class="number">1</span>] == target[<span class="number">2</span>] == possible_side</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                <span class="keyword">if</span> target[i] + nums[index] &lt;= possible_side:</span><br><span class="line">                    target[i] += nums[index]</span><br><span class="line">                    <span class="keyword">if</span> _dfs(index + <span class="number">1</span>):</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">True</span>      </span><br><span class="line">                    target[i] -= nums[index]</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">4</span> : </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        sum_nums = sum(nums)</span><br><span class="line">        possible_side = sum_nums // <span class="number">4</span></span><br><span class="line">        <span class="keyword">if</span> sum_nums % <span class="number">4</span> != <span class="number">0</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        nums.sort(reverse = <span class="literal">True</span>)</span><br><span class="line">        </span><br><span class="line">        target = [<span class="number">0</span>] * <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">return</span> _dfs(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><h5 id="DP-O"><a href="#DP-O" class="headerlink" title="(DP)  O()"></a>(DP)  O()</h5><h5 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h5><p><a href="https://leetcode.com/problems/matchsticks-to-square/solution/" target="_blank" rel="noopener">https://leetcode.com/problems/matchsticks-to-square/solution/</a></p>
+<h5 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码-1"><a href="#python-代码-1" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makesquare</span><span class="params">(self, nums: List[int])</span> -&gt; bool:</span></span><br><span class="line">        <span class="comment"># If there are no matchsticks, then we can't form any square.</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Number of matchsticks</span></span><br><span class="line">        L = len(nums)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Possible perimeter of our square</span></span><br><span class="line">        perimeter = sum(nums)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Possible side of our square from the given matchsticks</span></span><br><span class="line">        possible_side =  perimeter // <span class="number">4</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># If the perimeter isn't equally divisible among 4 sides, return False.</span></span><br><span class="line">        <span class="keyword">if</span> possible_side * <span class="number">4</span> != perimeter:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Memoization cache for the dynamic programming solution.</span></span><br><span class="line">        memo = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># mask and the sides_done define the state of our recursion.</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">recurse</span><span class="params">(mask, sides_done)</span>:</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># This will calculate the total sum of matchsticks used till now using the bits of the mask.</span></span><br><span class="line">            total = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> (mask &amp; (<span class="number">1</span> &lt;&lt; i)):</span><br><span class="line">                    total += nums[L - <span class="number">1</span> - i]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># If some of the matchsticks have been used and the sum is divisible by our square's side, then we increment the number of sides completed.</span></span><br><span class="line">            <span class="keyword">if</span> total &gt; <span class="number">0</span> <span class="keyword">and</span> total % possible_side == <span class="number">0</span>:</span><br><span class="line">                sides_done += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># If we were successfully able to form 3 sides, return True</span></span><br><span class="line">            <span class="keyword">if</span> sides_done == <span class="number">3</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># If this recursion state has already been calculated, just return the stored value.</span></span><br><span class="line">            <span class="keyword">if</span> (mask, sides_done) <span class="keyword">in</span> memo:</span><br><span class="line">                <span class="keyword">return</span> memo[(mask, sides_done)]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Common variable to store answer from all possible further recursions from this step.</span></span><br><span class="line">            ans = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># rem stores available space in the current side (incomplete).</span></span><br><span class="line">            c = int(total / possible_side)</span><br><span class="line">            rem = possible_side * (c + <span class="number">1</span>) - total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Iterate over all the matchsticks</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line"></span><br><span class="line">                <span class="comment"># If the current one can fit in the remaining space of the side and it hasn't already been taken, then try it out</span></span><br><span class="line">                <span class="keyword">if</span> nums[L - <span class="number">1</span> - i] &lt;= rem <span class="keyword">and</span> mask&amp;(<span class="number">1</span> &lt;&lt; i):</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># If the recursion after considering this matchstick gives a True result, just break. No need to look any further.</span></span><br><span class="line">                    <span class="comment"># mask ^ (1 &lt;&lt; i) makes the i^th from the right, 0 making it unavailable in future recursions.</span></span><br><span class="line">                    <span class="keyword">if</span> recurse(mask ^ (<span class="number">1</span> &lt;&lt; i), sides_done):</span><br><span class="line">                        ans = <span class="literal">True</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            <span class="comment"># cache the result for the current recursion state.            </span></span><br><span class="line">            memo[(mask, sides_done)] = ans</span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">        <span class="comment"># recurse with the initial mask with all matchsticks available.</span></span><br><span class="line">        <span class="keyword">return</span> recurse((<span class="number">1</span> &lt;&lt; L) - <span class="number">1</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="javascript:void(0);">暂无</a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/06/30/LeetCode-22-Generate-Parentheses/">LeetCode 22. Generate Parentheses  </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
