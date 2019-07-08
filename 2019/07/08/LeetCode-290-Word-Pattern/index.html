@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 290. Word Pattern    - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 20.31px;">BFS</a> <a href="/tags/DFS/" style="font-size: 24.06px;">DFS</a> <a href="/tags/DP/" style="font-size: 18.44px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/二分查找/" style="font-size: 12.81px;">二分查找</a> <a href="/tags/二叉搜索树/" style="font-size: 11.88px;">二叉搜索树</a> <a href="/tags/二叉树/" style="font-size: 22.19px;">二叉树</a> <a href="/tags/位运算/" style="font-size: 15.63px;">位运算</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/前缀树/" style="font-size: 10px;">前缀树</a> <a href="/tags/博弈/" style="font-size: 10px;">博弈</a> <a href="/tags/双指针/" style="font-size: 19.38px;">双指针</a> <a href="/tags/哈希表/" style="font-size: 21.25px;">哈希表</a> <a href="/tags/回溯/" style="font-size: 18.44px;">回溯</a> <a href="/tags/图/" style="font-size: 10.94px;">图</a> <a href="/tags/堆/" style="font-size: 12.81px;">堆</a> <a href="/tags/多叉树/" style="font-size: 10.94px;">多叉树</a> <a href="/tags/平衡二叉树/" style="font-size: 10.94px;">平衡二叉树</a> <a href="/tags/并查集/" style="font-size: 11.88px;">并查集</a> <a href="/tags/拓扑排序/" style="font-size: 10.94px;">拓扑排序</a> <a href="/tags/排序/" style="font-size: 11.88px;">排序</a> <a href="/tags/数学/" style="font-size: 14.69px;">数学</a> <a href="/tags/数论/" style="font-size: 11.88px;">数论</a> <a href="/tags/枚举/" style="font-size: 10.94px;">枚举</a> <a href="/tags/栈/" style="font-size: 13.75px;">栈</a> <a href="/tags/树型DP/" style="font-size: 10.94px;">树型DP</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/模拟/" style="font-size: 23.13px;">模拟</a> <a href="/tags/矩阵/" style="font-size: 12.81px;">矩阵</a> <a href="/tags/记忆化/" style="font-size: 10px;">记忆化</a> <a href="/tags/设计/" style="font-size: 10px;">设计</a> <a href="/tags/贪心/" style="font-size: 17.5px;">贪心</a> <a href="/tags/链表/" style="font-size: 16.56px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/07/08/LeetCode-290-Word-Pattern/" title="LeetCode 290. Word Pattern   " class="title-main">LeetCode 290. Word Pattern   </a>
+        <small class="article-time">2019-07-08</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一种规律 pattern 和一个字符串 str ，判断 str 是否遵循相同的规律。</p>
+<p>这里的 遵循 指完全匹配，例如， pattern 里的每个字母和字符串 str 中的每个非空单词之间存在着双向连接的对应规律。</p>
+<p>说明:<br>你可以假设 pattern 只包含小写字母， str 包含了由单个空格分隔的小写字母。</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>哈希表</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: pattern = &quot;abba&quot;, str = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="哈希表-O-n"><a href="#哈希表-O-n" class="headerlink" title="(哈希表)  O(n)"></a>(哈希表)  O(n)</h5><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordPattern</span><span class="params">(self, pattern: str, str: str)</span> -&gt; bool:</span></span><br><span class="line">        len_p = len(pattern)</span><br><span class="line">        list_s = str.split(<span class="string">' '</span>)</span><br><span class="line">        len_s = len(list_s)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len_p != len_s:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        ds = &#123;&#125;</span><br><span class="line">        dp = &#123;&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len_p):</span><br><span class="line">            <span class="keyword">if</span> list_s[i] <span class="keyword">not</span> <span class="keyword">in</span> ds:</span><br><span class="line">                ds[list_s[i]] = pattern[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> ds[list_s[i]] != pattern[i]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> pattern[i] <span class="keyword">not</span> <span class="keyword">in</span> dp:</span><br><span class="line">                dp[pattern[i]] = list_s[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> dp[pattern[i]] != list_s[i]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">             </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="/2019/07/08/LeetCode-205-Isomorphic-Strings/"> LeetCode 205. Isomorphic Strings  </a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/07/08/LeetCode-652-Find-Duplicate-Subtrees/">LeetCode 652. Find Duplicate Subtrees  </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
