@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="sc的博客">
+	<meta name="keywords" content="computer science">
+	
+	<title>LeetCode 494. Target Sum  - sc的博客</title>
+  <link rel="alternate" href type="application/atom+xml">
+	<link rel="shortcut icon" href="/imgs/ms.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		(function(d) {
+		  var config = {
+			kitId: 'huq1ytd',
+			scriptTimeout: 3000,
+			async: true
+		  },
+		  h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+</head>
+<body>
+	<div class="body-box">
+		<div class="content-box">
+			<div class="sidebar">
+	<div class="widget-me">
+		<div class="me-avatar">
+			<a href="/"><img src="/imgs/yinhun.jpg"></a>
+		</div>
+		<h2 class="me-name">
+			<a href="/">记录</a>
+		</h2>
+	</div>
+	<div class="widget-nav">
+		<nav class="nav-list">
+			<ul>
+				
+					<li>
+						<a href="/" class>
+							<span>主页</span>
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives/" class>
+							<span>归档</span>
+						</a>
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="sidebar-wrap">
+		<div class="widget-tags">
+			<h2 class="widget-title">标签</h2>
+			<a href="/tags/BFS/" style="font-size: 20.26px;">BFS</a> <a href="/tags/DFS/" style="font-size: 24.21px;">DFS</a> <a href="/tags/DP/" style="font-size: 21.84px;">DP</a> <a href="/tags/leetcode/" style="font-size: 25px;">leetcode</a> <a href="/tags/二分查找/" style="font-size: 12.37px;">二分查找</a> <a href="/tags/二叉搜索树/" style="font-size: 11.58px;">二叉搜索树</a> <a href="/tags/二叉树/" style="font-size: 22.63px;">二叉树</a> <a href="/tags/位运算/" style="font-size: 16.32px;">位运算</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/分而治之/" style="font-size: 10px;">分而治之</a> <a href="/tags/前缀树/" style="font-size: 10.79px;">前缀树</a> <a href="/tags/单调队列/" style="font-size: 10px;">单调队列</a> <a href="/tags/博弈/" style="font-size: 10px;">博弈</a> <a href="/tags/双指针/" style="font-size: 19.47px;">双指针</a> <a href="/tags/哈希表/" style="font-size: 21.05px;">哈希表</a> <a href="/tags/回溯/" style="font-size: 18.68px;">回溯</a> <a href="/tags/图/" style="font-size: 10.79px;">图</a> <a href="/tags/堆/" style="font-size: 13.95px;">堆</a> <a href="/tags/多叉树/" style="font-size: 10.79px;">多叉树</a> <a href="/tags/平衡二叉树/" style="font-size: 10.79px;">平衡二叉树</a> <a href="/tags/并查集/" style="font-size: 12.37px;">并查集</a> <a href="/tags/拓扑排序/" style="font-size: 10.79px;">拓扑排序</a> <a href="/tags/排序/" style="font-size: 13.16px;">排序</a> <a href="/tags/数学/" style="font-size: 15.53px;">数学</a> <a href="/tags/数论/" style="font-size: 11.58px;">数论</a> <a href="/tags/枚举/" style="font-size: 10.79px;">枚举</a> <a href="/tags/栈/" style="font-size: 14.74px;">栈</a> <a href="/tags/树型DP/" style="font-size: 10.79px;">树型DP</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/模拟/" style="font-size: 23.42px;">模拟</a> <a href="/tags/滑动窗口/" style="font-size: 12.37px;">滑动窗口</a> <a href="/tags/矩阵/" style="font-size: 12.37px;">矩阵</a> <a href="/tags/记忆化/" style="font-size: 12.37px;">记忆化</a> <a href="/tags/设计/" style="font-size: 10px;">设计</a> <a href="/tags/贪心/" style="font-size: 17.89px;">贪心</a> <a href="/tags/链表/" style="font-size: 17.11px;">链表</a>
+		</div>
+	</div>
+</div>
+			<div class="content-article">
+				<i class="mobile-toggle" style="display:none;"><img src="/imgs/menu.png"/></i>
+				<div class="content-article-box">
+					<article class="article  article-post">
+    <h2 class="article-title cl">
+        <a href="/2019/07/18/LeetCode-494-Target-Sum/" title="LeetCode 494. Target Sum " class="title-main">LeetCode 494. Target Sum </a>
+        <small class="article-time">2019-07-18</small>
+    </h2>
+    <div class="article-con">
+        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。</p>
+<p>返回可以使最终数组和为目标数 S 的所有添加符号的方法数。</p>
+<p>数组的长度不会超过20，并且数组中的值全为正数。<br>初始的数组的和不会超过1000。<br>保证返回的最终结果为32位整数。</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>BFS DFS 记忆化 DP </p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入: nums: [1, 1, 1, 1, 1], S: 3</span><br><span class="line">输出: 5</span><br><span class="line">解释: </span><br><span class="line"></span><br><span class="line">-1+1+1+1+1 = 3</span><br><span class="line">+1-1+1+1+1 = 3</span><br><span class="line">+1+1-1+1+1 = 3</span><br><span class="line">+1+1+1-1+1 = 3</span><br><span class="line">+1+1+1+1-1 = 3</span><br><span class="line"></span><br><span class="line">一共有5种方法让最终目标和为3。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><h5 id="DFS-O"><a href="#DFS-O" class="headerlink" title="(DFS)  O()"></a>(DFS)  O()</h5><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码"><a href="#python-代码" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTargetSumWays</span><span class="params">(self, nums: List[int], S: int)</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_dfs</span><span class="params">(index, path)</span>:</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> index == n:</span><br><span class="line">                <span class="keyword">if</span> path == S:</span><br><span class="line">                    self.count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">     </span><br><span class="line">            _dfs(index + <span class="number">1</span>, path - nums[index])</span><br><span class="line">            _dfs(index + <span class="number">1</span>, path + nums[index])</span><br><span class="line">            </span><br><span class="line">        n = len(nums)</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">        _dfs(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> self.count</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><h5 id="DFS-记忆化-O"><a href="#DFS-记忆化-O" class="headerlink" title="(DFS 记忆化)  O()"></a>(DFS 记忆化)  O()</h5><h5 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h5><h5 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码-1"><a href="#python-代码-1" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTargetSumWays</span><span class="params">(self, nums: List[int], S: int)</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_dfs</span><span class="params">(i, path)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> i == n:</span><br><span class="line">                <span class="keyword">if</span> path == S:</span><br><span class="line">                    memo[(i, path)] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    memo[(i, path)] = <span class="number">0</span></span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">if</span> (i, path) <span class="keyword">not</span> <span class="keyword">in</span> memo:   </span><br><span class="line">                memo[(i, path)] = _dfs(i + <span class="number">1</span>, path + nums[i]) + _dfs(i + <span class="number">1</span>, path - nums[i])</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">return</span> memo[(i, path)]</span><br><span class="line">        </span><br><span class="line">        memo = &#123;&#125;</span><br><span class="line">        n = len(nums)</span><br><span class="line">        _dfs(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> memo[(<span class="number">0</span>, <span class="number">0</span>)]</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="算法3"><a href="#算法3" class="headerlink" title="算法3"></a>算法3</h3><h5 id="BFS-O"><a href="#BFS-O" class="headerlink" title="(BFS)  O()"></a>(BFS)  O()</h5><h5 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h5><p><a href="https://leetcode.com/problems/target-sum/discuss/308438/9-Lines-Python-BFS-(skip-same-sums" target="_blank" rel="noopener">https://leetcode.com/problems/target-sum/discuss/308438/9-Lines-Python-BFS-(skip-same-sums)</a>)</p>
+<h5 id="复杂度分析：-2"><a href="#复杂度分析：-2" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><h5 id="python-代码-2"><a href="#python-代码-2" class="headerlink" title="python 代码"></a>python 代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">----------</span><br><span class="line"></span><br><span class="line"><span class="comment">### 算法4</span></span><br><span class="line"><span class="comment">##### (DP)  O()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 思路</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 复杂度分析：</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##### python 代码</span></span><br><span class="line">```python</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTargetSumWays</span><span class="params">(self, nums: List[int], S: int)</span> -&gt; int:</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        s = sum(nums)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> -s &lt;= S &lt;= s:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 2 * s + 1 =&gt; [-s, s]</span></span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">2</span> * s + <span class="number">1</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        dp[<span class="number">0</span>][s] = <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(-s, s + <span class="number">1</span>):</span><br><span class="line">      </span><br><span class="line">                <span class="keyword">if</span> -s &lt;= j - nums[i - <span class="number">1</span>]:</span><br><span class="line">                    dp[i][j + s] += dp[i - <span class="number">1</span>][j - nums[i - <span class="number">1</span>] + s]</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> j + nums[i - <span class="number">1</span>] &lt;= s:</span><br><span class="line">                    dp[i][j + s] += dp[i - <span class="number">1</span>][j + nums[i - <span class="number">1</span>] + s]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dp[n][S + s]</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="article-navgition">
+        <div class="navgition-wrap">
+            
+                <div class="navgition-prev">
+                    <h2 class="navgition-title">上一篇: <a href="/2019/07/18/LeetCode-399-Evaluate-Division/"> LeetCode 399. Evaluate Division   </a></h2>
+                </div>
+            
+
+            
+                <div class="navgition-next">
+                    <h2 class="navgition-title">下一篇: <a href="/2019/07/18/LeetCode-309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/">LeetCode 309. Best Time to Buy and Sell Stock with Cooldown </a></h2>
+                </div>
+            
+        </div>
+    </div>
+    
+</article>
+					
+				</div>
+				<footer class="footer">
+	<p class="footer-intro">
+		
+		@2019 sc的博客.
+		<br>
+		Talk is cheap. Show me the code.
+	</p>
+	<!-- <a href="https://github.com/shijuuu/hexo-theme-mokusei" target="_blank" class="extra">MOKUSEI</a> -->
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<span id="busuanzi_container_site_pv">
+		总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+	<span id="busuanzi_container_site_uv">
+		访客数<span id="busuanzi_value_site_uv"></span>人次
+	  </span>
+</footer>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<script src="/js/org/jquery.min.js"></script>
+	<script src="/js/feature.js"></script>
+	<script>
+		var Feature = new Feature();
+		Feature.init();
+	</script>
+</body>
+</html>
